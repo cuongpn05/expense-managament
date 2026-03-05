@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Header from './components/common/Header';
+import ExpenseForm from './components/expenses/ExpenseForm';
+import ExpenseList from './components/expenses/ExpenseList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col lg={8}>
+          <Header />
+
+          <main>
+            <section id="form-area" className="mb-5">
+              <ExpenseForm />
+            </section>
+
+            <section id="list-area">
+              <ExpenseList />
+            </section>
+          </main>
+
+          <footer className="mt-5 text-center text-muted">
+            <p className="small">© 2026 Quản Lý Chi Tiêu. Xây dựng bằng React & React-Bootstrap.</p>
+          </footer>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
