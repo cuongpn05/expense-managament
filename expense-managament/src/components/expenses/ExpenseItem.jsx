@@ -2,7 +2,8 @@ import React from 'react';
 import { ListGroup, Badge } from 'react-bootstrap';
 
 const getCategoryIcon = (category) => {
-    switch (category.toLowerCase()) {
+    const cat = category ? category.toLowerCase() : 'other';
+    switch (cat) {
         case 'food': return <i className="bi bi-cart text-primary"></i>;
         case 'entertainment': return <i className="bi bi-tv text-primary"></i>;
         case 'transport': return <i className="bi bi-car-front text-primary"></i>;

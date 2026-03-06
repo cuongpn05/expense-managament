@@ -2,15 +2,9 @@ import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import ExpenseItem from './ExpenseItem';
 
-const ExpenseList = () => {
-    // Dữ liệu mẫu
-    const mockExpenses = [
-        { id: 1, title: 'Đi siêu thị', amount: 500000, date: '2026-03-05', category: 'Food' },
-        { id: 2, title: 'Đăng ký Netflix', amount: 180000, date: '2026-03-01', category: 'Entertainment' },
-        { id: 3, title: 'Đổ xăng', amount: 50000, date: '2026-02-28', category: 'Transport' },
-    ];
-
-    const totalAmount = mockExpenses.reduce((acc, curr) => acc + curr.amount, 0);
+const ExpenseList = (props) => {
+    const expenses = props.items || [];
+    const totalAmount = expenses.reduce((acc, curr) => acc + curr.amount, 0);
 
     return (
         <Card className="shadow-sm border-0 rounded-4">
@@ -26,8 +20,8 @@ const ExpenseList = () => {
                 </div>
 
                 <ListGroup variant="flush">
-                    {mockExpenses.length > 0 ? (
-                        mockExpenses.map(expense => (
+                    {expenses.length > 0 ? (
+                        expenses.map(expense => (
                             <ExpenseItem key={expense.id} expense={expense} />
                         ))
                     ) : (
@@ -43,3 +37,4 @@ const ExpenseList = () => {
 };
 
 export default ExpenseList;
+
