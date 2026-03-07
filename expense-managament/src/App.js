@@ -3,11 +3,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Header from './components/common/Header';
 import ExpenseForm from './components/expenses/ExpenseForm';
 import ExpenseList from './components/expenses/ExpenseList';
+import CategorySummary from './components/expenses/CategorySummary';
 
 const INITIAL_EXPENSES = [
-  { id: '1', title: 'Đi siêu thị', amount: 500000, date: '2026-03-05', category: 'Food' },
-  { id: '2', title: 'Đăng ký Netflix', amount: 180000, date: '2026-03-01', category: 'Entertainment' },
-  { id: '3', title: 'Đổ xăng', amount: 50000, date: '2026-02-28', category: 'Transport' },
+  { id: '1', title: 'Đi siêu thị', amount: 500000, date: '2026-03-05', category: 'Food', type: 'expense' },
+  { id: '2', title: 'Đăng ký Netflix', amount: 180000, date: '2026-03-01', category: 'Entertainment', type: 'expense' },
+  { id: '3', title: 'Đổ xăng', amount: 50000, date: '2026-02-28', category: 'Transport', type: 'expense' },
 ];
 
 function App() {
@@ -24,6 +25,12 @@ function App() {
     });
   };
 
+  const clearExpensesHandler = () => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa toàn bộ lịch sử giao dịch không? Hành động này không thể hoàn tác.')) {
+      setExpenses([]);
+    }
+  };
+
   return (
     <Container className="py-5">
       <Row className="justify-content-center">
@@ -35,8 +42,12 @@ function App() {
               <ExpenseForm onSaveExpenseData={addExpenseHandler} />
             </section>
 
+            <section id="summary-area" className="mb-5">
+              <CategorySummary items={expenses} />
+            </section>
+
             <section id="list-area">
-              <ExpenseList items={expenses} />
+              <ExpenseList items={expenses} onClearData={clearExpensesHandler} />
             </section>
           </main>
 
@@ -48,6 +59,8 @@ function App() {
     </Container>
   );
 }
+
+
 
 export default App;
 
